@@ -53,34 +53,116 @@ rm -rf demo.tar.gz
 
 cat <<-EOF > /v2raybin/config.json
 {
-    "log":{
-        "loglevel":"warning"
-    },
-    "inbound":{
-        "protocol":"vmess",
-        "listen":"127.0.0.1",
-        "port":2333,
-        "settings":{
-            "clients":[
+	"log": {
+		"loglevel": "warning",
+	},
+	"inbounds": [
+		{
+			"port": 10001,
+			"listen": "127.0.0.1",
+			"protocol": "dokodemo-door",
+			"tag": "wsdoko",
+			"settings": {
+				"address": "v1.mux.cool",
+				"followRedirect": false,
+				"network": "tcp"
+			},
+			"streamSettings": {
+				"network": "ws",
+				"wsSettings": {
+					"path": "/shadow"
+				}
+			}
+		},
+		{
+			"port": 9015,
+			"protocol": "shadowsocks",
+			"settings": {
+				"method": "aes-128-gcm",
+				"ota": false,
+				"password": "${UUID}",
+				"network": "tcp,udp"
+			},
+			"streamSettings": {
+				"network": "domainsocket"
+			}
+		},
+		{
+      "tag": "ws",
+			"port": 10000,
+			"listen": "127.0.0.1",
+			"protocol": "vmess",
+			"settings": {
+	            "clients":[
                 {
                     "id":"${UUID}",
                     "level":1,
                     "alterId":${AlterID}
-                }
-            ]
-        },
-        "streamSettings":{
-            "network":"ws",
-            "wsSettings":{
-                "path":"${V2_Path}"
-            }
-        }
-    },
-    "outbound":{
-        "protocol":"freedom",
-        "settings":{
-        }
-    }
+                },
+		{
+                    "id":"${UUID1}",
+                    "level":1,
+                    "alterId":${AlterID}
+                },
+		{
+                    "id":"${UUID2}",
+                    "level":1,
+                    "alterId":${AlterID}
+                },
+		{
+                    "id":"${UUID3}",
+                    "level":1,
+                    "alterId":${AlterID}
+                }]
+			},
+			"streamSettings": {
+				"network": "ws",
+				"wsSettings": {
+					"path": "/port"
+				}
+			}
+		}
+	],
+	"outbounds": [{
+		"protocol": "freedom",
+		"settings": {},
+		"tag": "direct"
+	},
+		{
+			"protocol": "blackhole",
+			"settings": {},
+			"tag": "blocked"
+		},
+		{
+			"protocol": "freedom",
+			"tag": "ssmux",
+			"streamSettings": {
+				"network": "domainsocket"
+			}
+		}],
+  "transport": {
+		"dsSettings": {
+			"path": "/v2raybin/ss-loop.sock"
+		}
+	},
+	"routing": {
+		"rules": [
+			{
+				"type": "field",
+				"inboundTag": [
+					"wsdoko"
+				],
+				"outboundTag": "ssmux"
+			},
+			{
+				"type": "field",
+				"ip": [
+					"geoip:private"
+				],
+				"outboundTag": "blocked"
+			}
+		]
+	}
 }
 EOF
 
@@ -90,7 +172,11 @@ http://0.0.0.0:${PORT}
 	root /wwwroot
 	index index.html
 	timeouts none
-	proxy ${V2_Path} localhost:2333 {
+	proxy ${V2_Path} localhost:10000 {
+		websocket
+		header_upstream -Origin
+	}
+	proxy ${SS_Path} localhost:10001 {
 		websocket
 		header_upstream -Origin
 	}
