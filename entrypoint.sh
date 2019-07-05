@@ -186,8 +186,8 @@ EOF
 cat <<-EOF > /v2raybin/vmess.json 
 {
     "v": "2",
-    "ps": "${HOST}",
-    "add": "${HOST}",
+    "ps": "Heroku",
+    "add": "${customdomain}",
     "port": "443",
     "id": "${UUID1}",
     "aid": "${AlterID}",			
