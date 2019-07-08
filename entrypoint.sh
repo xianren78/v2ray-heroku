@@ -96,22 +96,18 @@ cat <<-EOF > /v2raybin/config.json
 	            "clients":[
                 {
                     "id":"${UUID}",
-                    "level":1,
                     "alterId":${AlterID}
                 },
 		{
                     "id":"${UUID1}",
-                    "level":1,
                     "alterId":${AlterID}
                 },
 		{
                     "id":"${UUID2}",
-                    "level":1,
                     "alterId":${AlterID}
                 },
 		{
                     "id":"${UUID3}",
-                    "level":1,
                     "alterId":${AlterID}
                 }]
 			},
