@@ -2,7 +2,24 @@ FROM debian:stretch-slim
 
 RUN apt update -y \
     	&& apt upgrade -y \
-    	&& apt install -y wget unzip qrencode tzdata
+    	&& apt install -y wget unzip qrencode \
+    	&& mkdir /wwwroot \
+    	&& cd /wwwroot \
+    	&& wget --no-check-certificate -qO 'demo.tar.gz' "https://github.com/xianren78/v2ray-heroku/raw/master/demo.tar.gz" \
+    	&& tar xvf demo.tar.gz \
+    	&& rm -rf demo.tar.gz \
+    	&& mkdir /v2raybin \
+    	&& cd /v2raybin  \
+    	&& wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/v$VER/v2ray-linux-64.zip \
+    	&& unzip v2ray-linux-64.zip v2ray v2ctl geosite.dat geoip.dat -d /v2raybin/ \
+    	&& rm -rf ./v2ray-linux-64.zip \
+    	&& chmod +x /v2raybin/v2ray /v2raybin/v2ctl \
+    	&& mkdir /caddybin  \  	
+    	&& cd /caddybin   \  	
+     	&& wget --no-check-certificate -qO 'caddy.tar.gz' https://github.com/caddyserver/caddy/releases/download/v1.0.1/caddy_v1.0.1_linux_amd64.tar.gz  \  	
+    	&& tar xvf caddy.tar.gz  \  	
+    	&& rm -rf caddy.tar.gz   \  	
+     	&& chmod +x caddy	
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

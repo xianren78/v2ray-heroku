@@ -23,6 +23,11 @@
        "description": "Path路径，默认/FreeApp",
        "value": "/FreeApp"
      },
+    "SS_Path": {
+       "description": "SS Path路径，默认/FreeSS",
+       "value": "/FreeSS"
+     },
+
     "V2_QR_Path": {
        "description": "二维码和订阅地址路径，默认1234。如AppName变量为no，此变量没有作用",
        "value": "1234"
@@ -32,7 +37,7 @@
        "value": "10"
      }
   },
-  "website": "https://github.com/ki8852/v2ray-heroku-undone",
-  "repository": "https://github.com/ki8852/v2ray-heroku-undone",
+  "website": "https://github.com/xianren78/v2ray-heroku",
+  "repository": "https://github.com/xianren78/v2ray-heroku",
   "stack": "container"
  }

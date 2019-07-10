@@ -19,37 +19,37 @@ rm -rf /etc/localtime
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 date -R
 
-SYS_Bit="$(getconf LONG_BIT)"
-[[ "$SYS_Bit" == '32' ]] && BitVer='_linux_386.tar.gz'
-[[ "$SYS_Bit" == '64' ]] && BitVer='_linux_amd64.tar.gz'
+#SYS_Bit="$(getconf LONG_BIT)"
+#[[ "$SYS_Bit" == '32' ]] && BitVer='_linux_386.tar.gz'
+#[[ "$SYS_Bit" == '64' ]] && BitVer='_linux_amd64.tar.gz'
 
-if [ "$VER" = "latest" ]; then
-  V_VER=`wget -qO- "https://api.github.com/repos/v2ray/v2ray-core/releases/latest" | grep 'tag_name' | cut -d\" -f4`
-else
-  V_VER="v$VER"
-fi
+#if [ "$VER" = "latest" ]; then
+#  V_VER=`wget -qO- "https://api.github.com/repos/v2ray/v2ray-core/releases/latest" | grep 'tag_name' | cut -d\" -f4`
+#else
+#  V_VER="v$VER"
+#fi
 
-mkdir /v2raybin
-cd /v2raybin
-wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/$V_VER/v2ray-linux-64.zip
-unzip v2ray-linux-64.zip v2ray v2ctl geosite.dat geoip.dat -d /v2raybin/
-rm -rf ./v2ray-linux-64.zip
-chmod +x /v2raybin/v2ray /v2raybin/v2ctl
+#mkdir /v2raybin
+#cd /v2raybin
+#wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/$V_VER/v2ray-linux-64.zip
+#unzip v2ray-linux-64.zip v2ray v2ctl geosite.dat geoip.dat -d /v2raybin/
+#rm -rf ./v2ray-linux-64.zip
+#chmod +x /v2raybin/v2ray /v2raybin/v2ctl
 
-C_VER=`wget -qO- "https://api.github.com/repos/mholt/caddy/releases/latest" | grep 'tag_name' | cut -d\" -f4`
-mkdir /caddybin
-cd /caddybin
-wget --no-check-certificate -qO 'caddy.tar.gz' "https://github.com/mholt/caddy/releases/download/$C_VER/caddy_$C_VER$BitVer"
-tar xvf caddy.tar.gz
-rm -rf caddy.tar.gz
-chmod +x caddy
-cd /root
-mkdir /wwwroot
-cd /wwwroot
+#C_VER=`wget -qO- "https://api.github.com/repos/mholt/caddy/releases/latest" | grep 'tag_name' | cut -d\" -f4`
+#mkdir /caddybin
+#cd /caddybin
+#wget --no-check-certificate -qO 'caddy.tar.gz' "https://github.com/mholt/caddy/releases/download/$C_VER/caddy_$C_VER$BitVer"
+#tar xvf caddy.tar.gz
+#rm -rf caddy.tar.gz
+#chmod +x caddy
+#cd /root
+#mkdir /wwwroot
+#cd /wwwroot
 
-wget --no-check-certificate -qO 'demo.tar.gz' "https://github.com/xianren78/v2ray-heroku/raw/master/demo.tar.gz"
-tar xvf demo.tar.gz
-rm -rf demo.tar.gz
+#wget --no-check-certificate -qO 'demo.tar.gz' "https://github.com/xianren78/v2ray-heroku/raw/master/demo.tar.gz"
+#tar xvf demo.tar.gz
+#rm -rf demo.tar.gz
 
 cat <<-EOF > /v2raybin/config.json
 {
