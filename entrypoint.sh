@@ -144,7 +144,7 @@ cat <<-EOF > /v2raybin/config.json
 			},
 			"streamSettings": {
 				"network": "h2",
-				"host":["richin.ga"]
+				"host":["richin.ga"],
 				"httpSettings": {
 					"path": "/h2c"
 				}
