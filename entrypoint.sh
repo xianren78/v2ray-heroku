@@ -120,7 +120,7 @@ cat <<-EOF > /v2raybin/config.json
 		},
 		{
       "tag": "h2",
-			"port": 10000,
+			"port": 10002,
 			"listen": "127.0.0.1",
 			"protocol": "vmess",
 			"settings": {
