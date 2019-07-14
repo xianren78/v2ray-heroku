@@ -10,7 +10,7 @@ RUN apt update -y \
     	&& rm -rf demo.tar.gz \
     	&& mkdir /v2raybin \
     	&& cd /v2raybin  \
-    	&& wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/v4.19.1/v2ray-linux-64.zip \
+    	&& wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/v4.20.0/v2ray-linux-64.zip \
     	&& unzip v2ray-linux-64.zip v2ray v2ctl geosite.dat geoip.dat -d /v2raybin/ \
     	&& rm -rf ./v2ray-linux-64.zip \
     	&& chmod +x /v2raybin/v2ray /v2raybin/v2ctl \
