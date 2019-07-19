@@ -19,7 +19,9 @@ RUN apt update -y \
      	&& wget --no-check-certificate -qO 'caddy.tar.gz' https://github.com/caddyserver/caddy/releases/download/v1.0.1/caddy_v1.0.1_linux_amd64.tar.gz  \  	
     	&& tar xvf caddy.tar.gz  \  	
     	&& rm -rf caddy.tar.gz   \  	
-     	&& chmod +x caddy	
+     	&& chmod +x caddy	\
+     	&& ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+      && echo "Asia/Shanghai" > /etc/timezone
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

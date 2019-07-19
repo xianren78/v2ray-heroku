@@ -15,9 +15,6 @@ if [[ -z "${V2_QR_Path}" ]]; then
   V2_QR_Code="1234"
 fi
 
-rm -rf /etc/localtime
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-date -R
 
 #SYS_Bit="$(getconf LONG_BIT)"
 #[[ "$SYS_Bit" == '32' ]] && BitVer='_linux_386.tar.gz'
@@ -117,38 +114,6 @@ cat <<-EOF > /v2raybin/config.json
 					"path": "/port"
 				}
 			}
-		},
-		{
-      "tag": "h2",
-			"port": 10002,
-			"listen": "127.0.0.1",
-			"protocol": "vmess",
-			"settings": {
-	            "clients":[
-                {
-                    "id":"${UUID}",
-                    "alterId":${AlterID}
-                },
-		{
-                    "id":"${UUID1}",
-                    "alterId":${AlterID}
-                },
-		{
-                    "id":"${UUID2}",
-                    "alterId":${AlterID}
-                },
-		{
-                    "id":"${UUID3}",
-                    "alterId":${AlterID}
-                }]
-			},
-			"streamSettings": {
-				"network": "h2",
-				"host":["richin.ga"],
-				"httpSettings": {
-					"path": "/h2c"
-				}
-			}
 		}
 	],
 	"outbounds": [{
@@ -208,11 +173,6 @@ http://0.0.0.0:${PORT}
 		websocket
 		header_upstream -Origin
 	}
-	proxy /h2c http://127.0.0.1:10002 {
-    insecure_skip_verify
-    header_upstream X-Forwarded-Proto "http"
-    header_upstream Host "richin.ga"
-  }
 }
 EOF
 
