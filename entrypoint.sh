@@ -51,7 +51,7 @@ fi
 cat <<-EOF > /v2raybin/config.json
 {
 	"log": {
-		"loglevel": "debug"
+		"loglevel": "warning"
 	},
 	"inbounds": [
 		{
