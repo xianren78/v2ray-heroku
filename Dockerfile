@@ -1,8 +1,8 @@
-FROM debian:stretch-slim
+FROM debian:stretch
 
 RUN apt update -y \
     	&& apt upgrade -y \
-    	&& apt install -y wget unzip qrencode \
+    	&& apt install -y wget unzip qrencode vim \
     	&& mkdir /wwwroot \
     	&& cd /wwwroot \
     	&& wget --no-check-certificate -qO 'demo.tar.gz' "https://github.com/xianren78/v2ray-heroku/raw/master/demo.tar.gz" \
