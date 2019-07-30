@@ -23,6 +23,10 @@ RUN apt update -y \
      	&& ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
       && echo "Asia/Shanghai" > /etc/timezone
 
+ADD daemon.sh /v2raybin/daemon.sh
+RUN chmod +x /v2raybin/daemon.sh
+ADD traffic.sh /v2raybin/traffic.sh
+RUN chmod +x /v2raybin/traffic.sh
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 CMD /entrypoint.sh

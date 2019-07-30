@@ -206,4 +206,5 @@ fi
 cd /v2raybin
 ./v2ray &
 cd /caddybin
-./caddy -conf="Caddyfile"
+./caddy -conf="Caddyfile" &
+/v2raybin/daemon.sh
