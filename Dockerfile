@@ -2,7 +2,7 @@ FROM debian:stretch
 
 RUN apt update -y \
     	&& apt upgrade -y \
-    	&& apt install -y wget unzip qrencode procps \
+    	&& apt install -y wget unzip qrencode \
     	&& mkdir /wwwroot \
     	&& cd /wwwroot \
     	&& wget --no-check-certificate -qO 'demo.tar.gz' "https://github.com/xianren78/v2ray-heroku/raw/master/demo.tar.gz" \
@@ -23,8 +23,6 @@ RUN apt update -y \
      	&& ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
       && echo "Asia/Shanghai" > /etc/timezone
 
-ADD traffic.sh /v2raybin/traffic.sh
-RUN chmod +x /v2raybin/traffic.sh
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 CMD /entrypoint.sh
