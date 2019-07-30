@@ -53,7 +53,16 @@ cat <<-EOF > /v2raybin/config.json
 	"log": {
 		"loglevel": "warning"
 	},
-	"inbounds": [
+	"inbounds": [{
+			"listen": "127.0.0.1",
+			"port": 10010,
+			"protocol": "dokodemo-door",
+			"settings": {
+				"address": "127.0.0.1"
+			},
+			"tag": "api"
+		},
+
 		{
 			"port": 10001,
 			"listen": "127.0.0.1",
@@ -116,6 +125,25 @@ cat <<-EOF > /v2raybin/config.json
 			}
 		}
 	],
+	"policy": {
+		"levels": {
+			"0": {
+				"statsUserUplink": true,
+				"statsUserDownlink": true
+			}
+		},
+    "system": {
+        "statsInboundUplink": true,
+        "statsInboundDownlink": true
+    }
+	},
+	"stats": {},
+	"api": {
+		"services": [
+			"StatsService"
+		],
+		"tag": "api"
+	},
 	"outbounds": [{
 		"protocol": "freedom",
 		"settings": {},
@@ -139,7 +167,13 @@ cat <<-EOF > /v2raybin/config.json
 		}
 	},
 	"routing": {
-		"rules": [
+		"rules": [{
+				"inboundTag": [
+					"api"
+				],
+				"outboundTag": "api",
+				"type": "field"
+			},
 			{
 				"type": "field",
 				"inboundTag": [
