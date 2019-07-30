@@ -102,19 +102,27 @@ cat <<-EOF > /v2raybin/config.json
 	            "clients":[
                 {
                     "id":"${UUID}",
-                    "alterId":${AlterID}
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "admin@test.com"
                 },
 		{
                     "id":"${UUID1}",
-                    "alterId":${AlterID}
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "test@test.com"
                 },
 		{
                     "id":"${UUID2}",
-                    "alterId":${AlterID}
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "mp@test.com"
                 },
 		{
                     "id":"${UUID3}",
-                    "alterId":${AlterID}
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "dxb@test.com"
                 }]
 			},
 			"streamSettings": {
