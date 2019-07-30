@@ -206,4 +206,6 @@ fi
 cd /v2raybin
 ./v2ray &
 cd /caddybin
-./caddy -conf="Caddyfile"
+./caddy -conf="Caddyfile" &
+cd /v2raybin
+watch ./traffic.sh reset
