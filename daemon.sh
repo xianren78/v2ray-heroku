@@ -2,5 +2,5 @@
 
 while [ 1 ] ; do
   /v2raybin/traffic.sh
-  sleep 600s
+  sleep 3600s
 done
