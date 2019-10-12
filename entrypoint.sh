@@ -1,4 +1,5 @@
 #! /bin/bash
+
 if [[ -z "${UUID}" ]]; then
   UUID="4890bd47-5180-4b1c-9a5d-3ef686543112"
 fi
@@ -76,7 +77,7 @@ cat <<-EOF > /v2raybin/config.json
 			"streamSettings": {
 				"network": "ws",
 				"wsSettings": {
-					"path": "/shadow"
+					"path": "${SS_Path}"
 				}
 			}
 		},
@@ -146,7 +147,7 @@ cat <<-EOF > /v2raybin/config.json
 			"streamSettings": {
 				"network": "ws",
 				"wsSettings": {
-					"path": "/port"
+					"path": "${V2_Path}"
 				}
 			}
 		}
