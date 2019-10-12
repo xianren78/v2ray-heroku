@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM heroku/heroku:16
 
 RUN apt update -y \
     	&& apt upgrade -y \
