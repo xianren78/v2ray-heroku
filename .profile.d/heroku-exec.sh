@@ -78,7 +78,7 @@ cat <<-EOF > /v2raybin/config.json
 			"streamSettings": {
 				"network": "ws",
 				"wsSettings": {
-					"path": "/shadow"
+					"path": "${SS_Path}"
 				}
 			}
 		},
@@ -88,7 +88,7 @@ cat <<-EOF > /v2raybin/config.json
 			"settings": {
 				"method": "aes-128-gcm",
 				"ota": false,
-				"password": "${UUID}",
+				"password": "${PASSWORD}",
 				"network": "tcp,udp"
 			},
 			"streamSettings": {
@@ -148,7 +148,7 @@ cat <<-EOF > /v2raybin/config.json
 			"streamSettings": {
 				"network": "ws",
 				"wsSettings": {
-					"path": "/port"
+					"path": "${V2_Path}"
 				}
 			}
 		}
