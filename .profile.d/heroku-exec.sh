@@ -5,3 +5,4 @@
   rm -rf /v2raybin/ss-loop*
  /entrypoint.sh
   echo "Restart v2ray Success!"
+  fi
