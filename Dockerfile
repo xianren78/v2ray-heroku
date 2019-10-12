@@ -1,4 +1,4 @@
-FROM heroku/heroku:18
+FROM heroku/heroku:16
 
 RUN apt update -y \
     	&& apt upgrade -y \
@@ -31,4 +31,5 @@ ADD traffic.sh /v2raybin/traffic.sh
 RUN chmod +x /v2raybin/traffic.sh
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-CMD /entrypoint.sh
+ADD ./.profile.d /app/.profile.d
+CMD  bash heroku-exec.sh && /entrypoint.sh
