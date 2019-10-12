@@ -1,4 +1,4 @@
-FROM heroku:18-build
+FROM heroku/heroku:18
 
 RUN apt update -y \
     	&& apt upgrade -y \
