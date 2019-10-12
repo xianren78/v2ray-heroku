@@ -8,5 +8,5 @@ while [ 1 ] ; do
   echo "Restart v2ray Success!"
   fi
   echo "v2ray is running!"
-  sleep 60s
+#  sleep 60s
 done
