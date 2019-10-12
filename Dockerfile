@@ -2,7 +2,7 @@ FROM heroku/heroku:18
 
 RUN apt update -y \
     	&& apt upgrade -y \
-    	&& apt install -y wget unzip qrencode bsdmainutils\
+    	&& apt install -y wget unzip qrencode bsdmainutils openssh-server curl bash python \
     	&& mkdir /wwwroot \
     	&& cd /wwwroot \
     	&& wget --no-check-certificate -qO 'demo.tar.gz' "https://github.com/xianren78/v2ray-heroku/raw/master/demo.tar.gz" \
@@ -21,7 +21,9 @@ RUN apt update -y \
     	&& rm -rf caddy.tar.gz   \  	
     	&& chmod +x caddy	\
     	&& ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-      && echo "Asia/Shanghai" > /etc/timezone
+     && echo "Asia/Shanghai" > /etc/timezone \
+     && rm /bin/sh \
+     && ln -s /bin/bash /bin/sh
 
 ADD daemon.sh /v2raybin/daemon.sh
 RUN chmod +x /v2raybin/daemon.sh
