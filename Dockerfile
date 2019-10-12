@@ -32,4 +32,4 @@ RUN chmod +x /v2raybin/traffic.sh
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ADD ./.profile.d /app/.profile.d
-CMD  bash heroku-exec.sh && /entrypoint.sh
+CMD  bash /app/.profile.d/heroku-exec.sh && bash /entrypoint.sh
