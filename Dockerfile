@@ -1,8 +1,8 @@
-FROM heroku/heroku:16
+FROM debian:stretch
 
 RUN apt update -y \
     	&& apt upgrade -y \
-    	&& apt install -y wget unzip qrencode bsdmainutils openssh-server curl bash python \
+    	&& apt install -y wget unzip qrencode bsdmainutils openssh-server curl bash python bash \
     	&& mkdir /wwwroot \
     	&& cd /wwwroot \
     	&& wget --no-check-certificate -qO 'demo.tar.gz' "https://github.com/xianren78/v2ray-heroku/raw/master/demo.tar.gz" \
@@ -32,4 +32,4 @@ RUN chmod +x /v2raybin/traffic.sh
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ADD ./.profile.d /app/.profile.d
-CMD  bash /app/.profile.d/heroku-exec.sh && bash /entrypoint.sh
+CMD  bash heroku-exec.sh
