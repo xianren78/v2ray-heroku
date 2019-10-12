@@ -123,6 +123,24 @@ cat <<-EOF > /v2raybin/config.json
                     "alterId":${AlterID},
 			        			"level": 0,
 			        			"email": "dxb@test.com"
+                },
+		{
+                    "id":"${UUID4}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "wj@test.com"
+                },
+		{
+                    "id":"${UUID5}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "wsl@test.com"
+                },
+		{
+                    "id":"${UUID6}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "ycz@test.com"
                 }]
 			},
 			"streamSettings": {
