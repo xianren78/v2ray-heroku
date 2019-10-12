@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM heroku/heroku:18-build
 
 RUN apt update -y \
     	&& apt upgrade -y \
@@ -16,12 +16,14 @@ RUN apt update -y \
     	&& chmod +x /v2raybin/v2ray /v2raybin/v2ctl \
     	&& mkdir /caddybin  \  	
     	&& cd /caddybin   \  	
-     	&& wget --no-check-certificate -qO 'caddy.tar.gz' https://github.com/caddyserver/caddy/releases/download/v1.0.1/caddy_v1.0.1_linux_amd64.tar.gz  \  	
+   	&& wget --no-check-certificate -qO 'caddy.tar.gz' https://github.com/caddyserver/caddy/releases/download/v1.0.3/caddy_v1.0.3_linux_amd64.tar.gz  \  	
     	&& tar xvf caddy.tar.gz  \  	
     	&& rm -rf caddy.tar.gz   \  	
-     	&& chmod +x caddy	\
-     	&& ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-      && echo "Asia/Shanghai" > /etc/timezone
+    	&& chmod +x caddy	\
+    	&& ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+     && echo "Asia/Shanghai" > /etc/timezone \
+     && rm /bin/sh \
+     && ln -s /bin/bash /bin/sh
 
 ADD daemon.sh /v2raybin/daemon.sh
 RUN chmod +x /v2raybin/daemon.sh
