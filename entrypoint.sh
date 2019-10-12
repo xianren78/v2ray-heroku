@@ -264,6 +264,7 @@ else
   echo -n "${vmess}" | qrencode -s 6 -o /wwwroot/$V2_QR_Path/v2.png
 fi
 
+/usr/sbin/sshd
 /v2raybin/v2ray -config=/v2raybin/config.json &
 /caddybin/caddy -conf=/caddybin/Caddyfile &
 /v2raybin/daemon.sh
