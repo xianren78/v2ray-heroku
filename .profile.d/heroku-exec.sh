@@ -88,7 +88,7 @@ cat <<-EOF > /v2raybin/config.json
 			"settings": {
 				"method": "aes-128-gcm",
 				"ota": false,
-				"password": "${PASSWORD}",
+				"password": "${UUID}",
 				"network": "tcp,udp"
 			},
 			"streamSettings": {
