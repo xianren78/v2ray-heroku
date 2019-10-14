@@ -52,7 +52,9 @@ fi
 cat <<-EOF > /v2raybin/config.json
 {
 	"log": {
-		"loglevel": "warning"
+		"loglevel": "warning",
+		"access": "/v2raybin/access.log",
+         "error": "/v2raybin/error.log"
 	},
 	"inbounds": [{
 			"listen": "127.0.0.1",
