@@ -10,13 +10,13 @@ RUN apt update -y \
     	&& rm -rf demo.tar.gz \
     	&& mkdir /v2raybin \
     	&& cd /v2raybin  \
-    	&& wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/v4.21.3/v2ray-linux-64.zip \
+    	&& wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/v4.22.0/v2ray-linux-64.zip \
     	&& unzip v2ray-linux-64.zip v2ray v2ctl geosite.dat geoip.dat -d /v2raybin/ \
     	&& rm -rf ./v2ray-linux-64.zip \
     	&& chmod +x /v2raybin/v2ray /v2raybin/v2ctl \
     	&& mkdir /caddybin  \  	
     	&& cd /caddybin   \  	
-   	&& wget --no-check-certificate -qO 'caddy.tar.gz' https://github.com/caddyserver/caddy/releases/download/v1.0.3/caddy_v1.0.3_linux_amd64.tar.gz  \  	
+   	&& wget --no-check-certificate -qO 'caddy.tar.gz' https://github.com/caddyserver/caddy/releases/download/v1.0.4/caddy_v1.0.4_linux_amd64.tar.gz  \  	
     	&& tar xvf caddy.tar.gz  \  	
     	&& rm -rf caddy.tar.gz   \  	
     	&& chmod +x caddy	\
