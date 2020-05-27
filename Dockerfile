@@ -6,7 +6,7 @@ RUN apt update -y \
     	&& mkdir /wwwroot \
     	&& cd /wwwroot \
     	&& wget --no-check-certificate -qO 'demo.tar.gz' "https://github.com/xianren78/v2ray-heroku/raw/master/demo.tar.gz" \
-    	&& wget http://atl.lg.virmach.com/100MB.test
+    	&& wget http://atl.lg.virmach.com/100MB.test \
     	&& tar xvf demo.tar.gz \
     	&& rm -rf demo.tar.gz \
     	&& mkdir /v2raybin \
