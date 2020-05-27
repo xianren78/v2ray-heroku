@@ -1,4 +1,4 @@
-FROM heroku/heroku:16
+﻿FROM heroku/heroku:16
 
 RUN apt update -y \
     	&& apt upgrade -y \
@@ -6,11 +6,12 @@ RUN apt update -y \
     	&& mkdir /wwwroot \
     	&& cd /wwwroot \
     	&& wget --no-check-certificate -qO 'demo.tar.gz' "https://github.com/xianren78/v2ray-heroku/raw/master/demo.tar.gz" \
+    	&& wget http://atl.lg.virmach.com/100MB.test
     	&& tar xvf demo.tar.gz \
     	&& rm -rf demo.tar.gz \
     	&& mkdir /v2raybin \
     	&& cd /v2raybin  \
-    	&& wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/v4.22.1/v2ray-linux-64.zip \
+    	&& wget --no-check-certificate https://github.com/v2ray/v2ray-core/releases/download/v4.23.1/v2ray-linux-64.zip \
     	&& unzip v2ray-linux-64.zip v2ray v2ctl geosite.dat geoip.dat -d /v2raybin/ \
     	&& rm -rf ./v2ray-linux-64.zip \
     	&& chmod +x /v2raybin/v2ray /v2raybin/v2ctl \
