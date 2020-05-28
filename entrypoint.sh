@@ -144,6 +144,36 @@ cat <<-EOF > /v2raybin/config.json
                     "alterId":${AlterID},
 			        			"level": 0,
 			        			"email": "ycz@test.com"
+                },
+		{
+                    "id":"${UUID7}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "qjl@test.com"
+                },
+		{
+                    "id":"${UUID8}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "hxf@test.com"
+                },
+		{
+                    "id":"${UUID9}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "llc@test.com"
+                },
+		{
+                    "id":"${UUID10}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "ld@test.com"
+                },
+		{
+                    "id":"${UUID11}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "wu.hb@test.com"
                 }]
 			},
 			"streamSettings": {
@@ -243,13 +273,13 @@ cat <<-EOF > /v2raybin/vmess.json
 {
     "v": "2",
     "ps": "Heroku",
-    "add": "${customdomain}",
-    "port": "443",
+    "add": "ax.richin.ltd",
+    "port": "59759",
     "id": "${UUID1}",
     "aid": "${AlterID}",			
     "net": "ws",			
     "type": "none",			
-    "host": "",			
+    "host": "${customdomain}",			
     "path": "${V2_Path}",	
     "tls": "tls"			
 }
