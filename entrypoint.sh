@@ -87,7 +87,7 @@ cat <<-EOF > /v2raybin/config.json
 			"port": 9015,
 			"protocol": "shadowsocks",
 			"settings": {
-				"method": "aes-128-gcm",
+				"method": "none",
 				"ota": false,
 				"password": "${PASSWORD}",
 				"network": "tcp,udp"
