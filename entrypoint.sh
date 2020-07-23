@@ -87,7 +87,7 @@ cat <<-EOF > /v2raybin/config.json
 			"port": 9015,
 			"protocol": "shadowsocks",
 			"settings": {
-				"method": "none",
+				"method": "chacha20-ietf-poly1305",
 				"ota": false,
 				"password": "${PASSWORD}",
 				"network": "tcp,udp"
