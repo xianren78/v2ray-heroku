@@ -289,14 +289,10 @@ http://0.0.0.0:${PORT}
 		websocket
 		header_upstream -Origin
 	}
-  proxy ${VLESS_Path} localhost:10004 {
-    websocket
-    header_upstream -Origin
+    proxy ${VLESS_Path} localhost:10004 {
+       websocket
+       header_upstream -Origin
   }
-  forwardproxy {
-    basicauth ${fpuser} ${fppass}
-    probe_resistance ${fpsite}
-    }
 }
 EOF
 
