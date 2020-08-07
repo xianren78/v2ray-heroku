@@ -215,7 +215,8 @@ cat <<-EOF > /v2raybin/config.json
                     "alterId":${AlterID},
 			        			"level": 0,
 			        			"email": "wu.hb@test.com"
-                }]
+                }],
+ 			"decryption": "none"
 			},
 			"streamSettings": {
 				"network": "ws",
