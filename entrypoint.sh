@@ -21,116 +21,9 @@ cat <<-EOF > /v2raybin/config.json
 	"log": {
 		"loglevel": "warning",
 		"access": "/v2raybin/access.log",
-          "error": "/v2raybin/error.log"
+         "error": "/v2raybin/error.log"
 	},
 	"inbounds": [{
-			"port": ${PORT},
-			"tag": "vless",
-			"protocol": "vless",
-			"settings": {
-				"clients": [ {
-                    "id":"${UUID}",
-                    "alterId":${AlterID},
-			        			"level": 0,
-			        			"email": "admin@test.com"
-                },
-		{
-                    "id":"${UUID1}",
-                    "alterId":${AlterID},
-			        			"level": 0,
-			        			"email": "test@test.com"
-                },
-		{
-                    "id":"${UUID2}",
-                    "alterId":${AlterID},
-			        			"level": 0,
-			        			"email": "mp@test.com"
-                },
-		{
-                    "id":"${UUID3}",
-                    "alterId":${AlterID},
-			        			"level": 0,
-			        			"email": "dxb@test.com"
-                },
-		{
-                    "id":"${UUID4}",
-                    "alterId":${AlterID},
-			        			"level": 0,
-			        			"email": "wj@test.com"
-                },
-		{
-                    "id":"${UUID5}",
-                    "alterId":${AlterID},
-			        			"level": 0,
-			        			"email": "wsl@test.com"
-                },
-		{
-                    "id":"${UUID6}",
-                    "alterId":${AlterID},
-			        			"level": 0,
-			        			"email": "ycz@test.com"
-                },
-		{
-                    "id":"${UUID7}",
-                    "alterId":${AlterID},
-			        			"level": 0,
-			        			"email": "qjl@test.com"
-                },
-		{
-                    "id":"${UUID8}",
-                    "alterId":${AlterID},
-			        			"level": 0,
-			        			"email": "hxf@test.com"
-                },
-		{
-                    "id":"${UUID9}",
-                    "alterId":${AlterID},
-			        			"level": 0,
-			        			"email": "llc@test.com"
-                },
-		{
-                    "id":"${UUID10}",
-                    "alterId":${AlterID},
-			        			"level": 0,
-			        			"email": "ld@test.com"
-                },
-		{
-                    "id":"${UUID11}",
-                    "alterId":${AlterID},
-			        			"level": 0,
-			        			"email": "wu.hb@test.com"
-                }
-				],
-				"decryption": "none",
-				"fallbacks": [{
-						"path": "${V2_Path}",
-						"dest": 10000,
-						"xver": 1
-					},
-					{
-						"path": "${SS_Path}",
-						"dest": 10001,
-						"xver": 1
-					},
-					{
-						"dest": 88,
-						"xver": 0
-					}
-				]
-			},
-			"streamSettings": {
-				"network": "tcp",
-				"security": "tls",
-				"tlsSettings": {
-					"alpn": ["http/1.1"],
-					"certificates": [{
-						"certificateFile": "/etc/letsencrypt/live/jp.azurevps.gq/fullchain.pem",
-						"keyFile": "/etc/letsencrypt/live/jp.azurevps.gq/privkey.pem"
-					}]
-				}
-			}
-		},
-		{
 			"listen": "127.0.0.1",
 			"port": 10010,
 			"protocol": "dokodemo-door",
@@ -153,7 +46,6 @@ cat <<-EOF > /v2raybin/config.json
 			"streamSettings": {
 				"network": "ws",
 				"wsSettings": {
-					"acceptProxyProtocol": true,
 					"path": "${SS_Path}"
 				}
 			}
@@ -241,64 +133,150 @@ cat <<-EOF > /v2raybin/config.json
 			"streamSettings": {
 				"network": "ws",
 				"wsSettings": {
-					"acceptProxyProtocol": true,
 					"path": "${V2_Path}"
+				}
+			}
+		},
+		{
+			"port": 10004,
+			"listen": "127.0.0.1",
+			"protocol": "vless",
+			"tag": "ws-vless",
+			"settings": {
+	            "clients":[
+                {
+                    "id":"${UUID}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "admin@test.com"
+                },
+		{
+                    "id":"${UUID1}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "test@test.com"
+                },
+		{
+                    "id":"${UUID2}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "mp@test.com"
+                },
+		{
+                    "id":"${UUID3}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "dxb@test.com"
+                },
+		{
+                    "id":"${UUID4}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "wj@test.com"
+                },
+		{
+                    "id":"${UUID5}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "wsl@test.com"
+                },
+		{
+                    "id":"${UUID6}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "ycz@test.com"
+                },
+		{
+                    "id":"${UUID7}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "qjl@test.com"
+                },
+		{
+                    "id":"${UUID8}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "hxf@test.com"
+                },
+		{
+                    "id":"${UUID9}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "llc@test.com"
+                },
+		{
+                    "id":"${UUID10}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "ld@test.com"
+                },
+		{
+                    "id":"${UUID11}",
+                    "alterId":${AlterID},
+			        			"level": 0,
+			        			"email": "wu.hb@test.com"
+                }],
+ 			"decryption": "none"
+			},
+			"streamSettings": {
+				"network": "ws",
+				"wsSettings": {
+					"path": "${VLESS_Path}"
 				}
 			}
 		}
 	],
-	"outbounds": [{
-			"protocol": "freedom",
-			"settings": {},
-			"tag": "direct"
+	"policy": {
+		"levels": {
+			"0": {
+				"statsUserUplink": true,
+				"statsUserDownlink": true
+			}
 		},
+    "system": {
+        "statsInboundUplink": true,
+        "statsInboundDownlink": true
+    }
+	},
+	"stats": {},
+	"api": {
+		"services": [
+			"StatsService"
+		],
+		"tag": "api"
+	},
+	"outbounds": [{
+		"protocol": "freedom",
+		"settings": {},
+		"tag": "direct"
+	},
 		{
 			"protocol": "blackhole",
 			"settings": {},
 			"tag": "blocked"
-		}
-],
-"policy": {
-	"levels": {
-		"0": {
-			"statsUserUplink": true,
-			"statsUserDownlink": true
-		}
-	},
-	"system": {
-		"statsInboundUplink": true,
-		"statsInboundDownlink": true
+		}],
+	"routing": {
+		"rules": [{
+				"inboundTag": [
+					"api"
+				],
+				"outboundTag": "api",
+				"type": "field"
+			},
+			{
+				"type": "field",
+				"ip": [
+					"geoip:private"
+				],
+				"outboundTag": "blocked"
+			}
+		]
 	}
-},
-"stats": {},
-"api": {
-	"services": [
-		"StatsService"
-	],
-	"tag": "api"
-},
-"routing": {
-	"rules": [{
-			"inboundTag": [
-				"api"
-			],
-			"outboundTag": "api",
-			"type": "field"
-		},
-		{
-			"type": "field",
-			"ip": [
-				"geoip:private"
-			],
-			"outboundTag": "blocked"
-		}
-	]
-}
 }
 EOF
 
 cat <<-EOF > /caddybin/Caddyfile
-http://0.0.0.0:88
+http://0.0.0.0:${PORT}
 {
 	root /wwwroot
 	index index.html
