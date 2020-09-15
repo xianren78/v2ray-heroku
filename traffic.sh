@@ -1,7 +1,7 @@
 #!/bin/bash
 
 _APISERVER=127.0.0.1:10010
-_V2CTL=/v2raybin/v2ctl
+_V2CTL=/v3bin/v2ctl
 
 v2_query_all () {
     local ARGS=
