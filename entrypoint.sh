@@ -16,12 +16,12 @@ if [[ -z "${V2_QR_Path}" ]]; then
   V2_QR_Code="1234"
 fi
 
-cat <<-EOF > /v2raybin/config.json
+cat <<-EOF > /v3bin/config.json
 {
 	"log": {
 		"loglevel": "warning",
-		"access": "/v2raybin/access.log",
-         "error": "/v2raybin/error.log"
+		"access": "/v3bin/access.log",
+         "error": "/v3bin/error.log"
 	},
 	"inbounds": [{
 			"listen": "127.0.0.1",
@@ -296,7 +296,7 @@ http://0.0.0.0:${PORT}
 }
 EOF
 
-cat <<-EOF > /v2raybin/vmess.json 
+cat <<-EOF > /v3bin/vmess.json 
 {
     "v": "2",
     "ps": "Heroku",
@@ -316,14 +316,13 @@ if [ "$AppName" = "no" ]; then
   echo "不生成二维码"
 else
   mkdir /wwwroot/$V2_QR_Path
-  vmess="vmess://$(cat /v2raybin/vmess.json | base64 -w 0)" 
+  vmess="vmess://$(cat /v3bin/vmess.json | base64 -w 0)" 
   Linkbase64=$(echo -n "${vmess}" | tr -d '\n' | base64 -w 0) 
   echo "${Linkbase64}" | tr -d '\n' > /wwwroot/$V2_QR_Path/index.html
   echo "${vmess}" | tr -d '\n' > /wwwroot/$V2_QR_Path/index.html
   echo -n "${vmess}" | qrencode -s 6 -o /wwwroot/$V2_QR_Path/v2.png
 fi
 
-/usr/sbin/sshd
-/v2raybin/v2ray -config=/v2raybin/config.json &
+/v3bin/v3 -config=/v3bin/config.json &
 /caddybin/caddy -conf=/caddybin/Caddyfile &
-/v2raybin/daemon.sh
+/v3bin/daemon.sh
