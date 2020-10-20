@@ -2,5 +2,5 @@
 
 while [ 1 ] ; do
   /v3bin/traffic.sh
-  sleep 600s
+  sleep 120s
 done

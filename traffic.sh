@@ -3,40 +3,43 @@
 _APISERVER=127.0.0.1:10010
 _V2CTL=/v3bin/v2ctl
 
-v2_query_all () {
+apidata () {
     local ARGS=
-    if [[ $1 == "reset" ]];  then
+    if [[ $1 == "reset" ]]; then
       ARGS="reset: true"
     fi
-    local DATA=$($_V2CTL api --server=$_APISERVER StatsService.QueryStats "${ARGS}" | api2column)
-    echo -e "\n------------Inbound----------"
-    print_sum "$DATA" "inbound"
-    echo "-----------------------------"
-    echo -e "\n-------------User------------"
-    print_sum "$DATA" "user"
-    echo "-----------------------------"
-}
-
-api2column() {
-    cat | awk '{
-        if (match($1, /name:/)){ 
-            f=1; gsub(/^"|"$/, "", $2); split($2, p,  ">>>");
-            print p[1]":"p[2]"->"p[4];
+    $_V2CTL api --server=$_APISERVER StatsService.QueryStats "${ARGS}" \
+    | awk '{
+        if (match($1, /name:/)) {
+            f=1; gsub(/^"|link"$/, "", $2);
+            split($2, p,  ">>>");
+            printf "%s:%s->%s\t", p[1],p[2],p[4];
         }
-        else if (match($1, /value:/)){ f=0; printf "%.0f\n", $2; }
-        else if (match($0, /^>$/) && f == 1) print "0"
-        else {}
-    }'  | sed '$!N;s/\n/ /; s/link//'
+        else if (match($1, /value:/) && f){ f = 0; printf "%.0f\n", $2; }
+        else if (match($0, /^>$/) && f) { f = 0; print 0; }
+    }'
 }
 
 print_sum() {
     local DATA="$1"
     local PREFIX="$2"
-    local UDATA=$(echo "$DATA" | grep "^${PREFIX}" | sort -r)
-    local UPSUM=$(echo "$UDATA" | awk '/->up/{sum+=$2;}END{printf "%.0f\n", sum;}')
-    local DOWNSUM=$(echo "$UDATA" | awk '/->down/{sum+=$2;}END{printf "%.0f\n", sum;}')
-    UDATA="${UDATA}\nTOTAL->up ${UPSUM}\nTOTAL->down ${DOWNSUM}"
-    echo -e "$UDATA" | numfmt --field=2 --suffix=B --to=iec | column -t
+    local SORTED=$(echo "$DATA" | grep "^${PREFIX}" | sort -r)
+    local SUM=$(echo "$SORTED" | awk '
+        /->up/{us+=$2}
+        /->down/{ds+=$2}
+        END{
+            printf "SUM->up:\t%.0f\nSUM->down:\t%.0f\nSUM->TOTAL:\t%.0f\n", us, ds, us+ds;
+        }')
+    echo -e "${SORTED}\n${SUM}" \
+    | numfmt --field=2 --suffix=B --to=iec \
+    | column -t
 }
 
-v2_query_all $1
+DATA=$(apidata $1)
+echo "------------Inbound----------"
+print_sum "$DATA" "inbound"
+echo "-----------------------------"
+echo
+echo "-------------User------------"
+print_sum "$DATA" "user"
+echo "-----------------------------"

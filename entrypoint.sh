@@ -12,10 +12,6 @@ if [[ -z "${V2_Path}" ]]; then
   V2_Path="/FreeApp"
 fi
 
-if [[ -z "${V2_QR_Path}" ]]; then
-  V2_QR_Code="1234"
-fi
-
 cat <<-EOF > /v3bin/config.json
 {
 	"log": {
@@ -295,17 +291,6 @@ http://0.0.0.0:${PORT}
   }
 }
 EOF
-
-if [ "$AppName" = "no" ]; then
-  echo "不生成二维码"
-else
-  mkdir /wwwroot/$V2_QR_Path
-  vmess="vmess://$(cat /v3bin/vmess.json | base64 -w 0)" 
-  Linkbase64=$(echo -n "${vmess}" | tr -d '\n' | base64 -w 0) 
-  echo "${Linkbase64}" | tr -d '\n' > /wwwroot/$V2_QR_Path/index.html
-  echo "${vmess}" | tr -d '\n' > /wwwroot/$V2_QR_Path/index.html
-  echo -n "${vmess}" | qrencode -s 6 -o /wwwroot/$V2_QR_Path/v2.png
-fi
 
 /v3bin/v3 -config=/v3bin/config.json &
 /caddybin/caddy -conf=/caddybin/Caddyfile &
