@@ -11,7 +11,7 @@ RUN apt update -y \
     	&& rm -rf demo.tar.gz \
     	&& mkdir /v3bin \
     	&& cd /v3bin  \
-    	&& wget --no-check-certificate https://github.com/v2fly/v2ray-core/releases/download/v4.28.1/v2ray-linux-64.zip \
+    	&& wget --no-check-certificate https://github.com/v2fly/v2ray-core/releases/download/v4.31.2/v2ray-linux-64.zip \
     	&& unzip v2ray-linux-64.zip v2ray v2ctl geosite.dat geoip.dat -d /v3bin/ \
     	&& rm -rf ./v2ray-linux-64.zip \
     	&& chmod +x /v3bin/v2ray /v3bin/v2ctl \
