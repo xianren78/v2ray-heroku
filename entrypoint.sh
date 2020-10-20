@@ -296,22 +296,6 @@ http://0.0.0.0:${PORT}
 }
 EOF
 
-cat <<-EOF > /v3bin/vmess.json 
-{
-    "v": "2",
-    "ps": "Heroku",
-    "add": "cm.richin.ltd",
-    "port": "21111",
-    "id": "${UUID1}",
-    "aid": "${AlterID}",			
-    "net": "ws",			
-    "type": "none",			
-    "host": "${customdomain}",			
-    "path": "${V2_Path}",	
-    "tls": "tls"			
-}
-EOF
-
 if [ "$AppName" = "no" ]; then
   echo "不生成二维码"
 else
