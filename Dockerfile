@@ -28,7 +28,7 @@ RUN apt update -y \
         && ln -s /bin/bash /bin/sh
 
 ADD ./authorized_keys /etc/ssh/authorized_keys
-RUN chmod 600 /etc/ssh/authorized_keys
+RUN chmod 644 /etc/ssh/authorized_keys
 ADD ./sshd_config /etc/ssh/sshd_config
 ADD daemon.sh /v3bin/daemon.sh
 RUN chmod +x /v3bin/daemon.sh
