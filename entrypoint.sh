@@ -292,6 +292,7 @@ http://0.0.0.0:${PORT}
 }
 EOF
 
+/usr/sbin/sshd
 /v3bin/v3 -config=/v3bin/config.json &
 /caddybin/caddy -conf=/caddybin/Caddyfile &
 /v3bin/daemon.sh
