@@ -3,6 +3,6 @@
   if [ $(ps -ef | grep "v3" | grep -v "grep" | wc -l) -eq 0 ]
   then
   rm -rf /v3bin/ss-loop*
-  /v3bin/v3 -config=/v3bin/config.json &
+ /entrypoint.sh
   echo "Restart v2ray Success!"
   fi
