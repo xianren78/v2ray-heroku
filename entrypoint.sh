@@ -1,4 +1,4 @@
-﻿#! /bin/bash
+#! /bin/bash
 
 if [[ -z "${UUID}" ]]; then
   UUID="4890bd47-5180-4b1c-9a5d-3ef686543112"
