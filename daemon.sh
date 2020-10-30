@@ -1,7 +1,7 @@
 #!/bin/bash
 
 while [ 1 ] ; do
-  echo -n "Your username is $(whoami)."; echo " Your v2 traffic is below. "
   /v3bin/traffic.sh
+  echo -n "Current user is $(whoami) and your "; echo -n "$(last)" |sed '/^[[:space:]]*$/d'; echo .
   sleep 240s
 done
