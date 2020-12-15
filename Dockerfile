@@ -11,11 +11,14 @@ RUN apt update -y \
     	&& rm -rf demo.tar.gz \
     	&& mkdir /v3bin \
     	&& cd /v3bin  \
-    	&& wget --no-check-certificate https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip \
-    	&& unzip v2ray-linux-64.zip v2ray v2ctl geosite.dat geoip.dat -d /v3bin/ \
+    	&& wget --no-check-certificate https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip \
+    	&& wget --no-check-certificate https://github.com/v2fly/v2ray-core/releases/download/v4.32.1/v2ray-linux-64.zip \
+    	&& unzip Xray-linux-64.zip xray  geosite.dat geoip.dat -d /v3bin/ \
+        && unzip v2ray-linux-64.zip v2ctl -d /v3bin/ \
+    	&& rm -rf ./Xray-linux-64.zip \
     	&& rm -rf ./v2ray-linux-64.zip \
-    	&& chmod +x /v3bin/v2ray /v3bin/v2ctl \
-    	&& mv  /v3bin/v2ray /v3bin/v3 \
+    	&& chmod +x /v3bin/xray /v3bin/v2ctl \
+    	&& mv  /v3bin/xray /v3bin/x \
     	&& mkdir /caddybin  \  	
     	&& cd /caddybin   \  	
      	&& wget --no-check-certificate -qO 'caddy.tar.gz' https://github.com/caddyserver/caddy/releases/download/v1.0.4/caddy_v1.0.4_linux_amd64.tar.gz  \  	
