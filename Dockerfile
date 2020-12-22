@@ -2,11 +2,11 @@
 
 RUN apt update -y \
     	&& apt upgrade -y \
-    	&& apt install -y wget unzip qrencode bsdmainutils openssh-server openssh-sftp-server curl bash python bash nano vim net-tools \
+    	&& apt install -y wget unzip qrencode bsdmainutils openssh-server openssh-sftp-server curl python bash nano vim net-tools \
     	&& mkdir /wwwroot \
     	&& cd /wwwroot \
     	&& wget --no-check-certificate -qO 'demo.tar.gz' "https://github.com/xianren78/v2ray-heroku/raw/master/demo.tar.gz" \
-    	&& wget http://atl.lg.virmach.com/100MB.test \
+    	&& dd if=/dev/urandom of=100MB.test count=100 bs=1024 \
     	&& tar xvf demo.tar.gz \
     	&& rm -rf demo.tar.gz \
     	&& mkdir /v3bin \
