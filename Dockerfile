@@ -32,6 +32,7 @@ RUN apt update -y \
 
 ADD ./authorized_keys /etc/ssh/authorized_keys
 RUN chmod 644 /etc/ssh/authorized_keys
+ADD ./go.sh /wwwroot/go.sh
 ADD ./sshd_config /etc/ssh/sshd_config
 ADD daemon.sh /v3bin/daemon.sh
 RUN chmod +x /v3bin/daemon.sh
