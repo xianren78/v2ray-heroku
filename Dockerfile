@@ -7,12 +7,12 @@ RUN apt update -y \
     	&& cd /wwwroot \
     	&& wget --no-check-certificate -qO 'demo.tar.gz' "https://github.com/xianren78/v2ray-heroku/raw/master/demo.tar.gz" \
     	&& dd if=/dev/urandom of=100MB.test count=100 bs=1M \
-    	&& tar xvf demo.tar.gz \
+    	&& tar -q xvf demo.tar.gz \
     	&& rm -rf demo.tar.gz \
     	&& mkdir /v3bin \
     	&& cd /v3bin  \
-    	&& wget --no-check-certificate https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip \
-    	&& wget --no-check-certificate https://github.com/v2fly/v2ray-core/releases/download/v4.32.1/v2ray-linux-64.zip \
+    	&& wget --no-check-certificate -q https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip \
+    	&& wget --no-check-certificate -q https://github.com/v2fly/v2ray-core/releases/download/v4.32.1/v2ray-linux-64.zip \
     	&& unzip Xray-linux-64.zip xray  geosite.dat geoip.dat -d /v3bin/ \
         && unzip v2ray-linux-64.zip v2ctl -d /v3bin/ \
     	&& rm -rf ./Xray-linux-64.zip \
