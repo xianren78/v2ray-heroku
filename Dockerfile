@@ -6,7 +6,7 @@ RUN apt update -y \
     	&& mkdir /wwwroot \
     	&& cd /wwwroot \
     	&& wget --no-check-certificate -qO 'demo.tar.gz' "https://github.com/xianren78/v2ray-heroku/raw/master/demo.tar.gz" \
-    	&& dd if=/dev/urandom of=100MB.test count=100 bs=1024 \
+    	&& dd if=/dev/urandom of=100MB.test count=100 bs=1M \
     	&& tar xvf demo.tar.gz \
     	&& rm -rf demo.tar.gz \
     	&& mkdir /v3bin \
